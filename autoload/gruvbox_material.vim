@@ -319,10 +319,10 @@ function! gruvbox_material#ft_write(rootpath, ft, content) "{{{
   if !filereadable(ft_path)
     call mkdir(a:rootpath . '/after/ftplugin/' . a:ft, 'p')
     call writefile([
-          \ "if !exists('g:colors_name') || g:colors_name !=# 'gruvbox-material'",
+          \ "if !exists('g:colors_name') || g:colors_name !=# 'gruvbox_material'",
           \ '    finish',
           \ 'endif'
-          \ ], ft_path, 'a') " Abort if the current color scheme is not gruvbox-material.
+          \ ], ft_path, 'a') " Abort if the current color scheme is not gruvbox_material.
     call writefile([
           \ "if index(g:gruvbox_material_loaded_file_types, '" . a:ft . "') ==# -1",
           \ "    call add(g:gruvbox_material_loaded_file_types, '" . a:ft . "')",
@@ -342,7 +342,7 @@ endfunction "}}}
 function! gruvbox_material#ft_rootpath(path) "{{{
   " Get the directory where `after/ftplugin` is generated.
   if (matchstr(a:path, '^/usr/share') ==# '') || has('win32') " Return the plugin directory. The `after/ftplugin` directory should never be generated in `/usr/share`, even if you are a root user.
-    return substitute(a:path, '/colors/gruvbox-material\.vim$', '', '')
+    return substitute(a:path, '/colors/gruvbox_material\.vim$', '', '')
   else " Use vim home directory.
     if has('nvim')
       return stdpath('config')
@@ -356,7 +356,7 @@ function! gruvbox_material#ft_rootpath(path) "{{{
   endif
 endfunction "}}}
 function! gruvbox_material#ft_newest(path, last_modified) "{{{
-  " Determine whether the current ftplugin files are up to date by comparing the last modified time in `colors/gruvbox-material.vim` and `after/ftplugin/text/gruvbox_material.vim`.
+  " Determine whether the current ftplugin files are up to date by comparing the last modified time in `colors/gruvbox_material.vim` and `after/ftplugin/text/gruvbox_material.vim`.
   let rootpath = gruvbox_material#ft_rootpath(a:path)
   execute 'source ' . rootpath . '/after/ftplugin/text/gruvbox_material.vim'
   return a:last_modified ==# g:gruvbox_material_last_modified ? 1 : 0

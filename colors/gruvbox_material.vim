@@ -12,7 +12,7 @@ if exists('syntax_on')
   syntax reset
 endif
 
-let g:colors_name = 'gruvbox-material'
+let g:colors_name = 'gruvbox_material'
 
 if !(has('termguicolors') && &termguicolors) && !has('gui_running') && &t_Co != 256
   finish
